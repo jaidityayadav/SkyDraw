@@ -1,4 +1,4 @@
-import express, {Request, Response} from "express";
+import express, {Request, RequestHandler, Response} from "express";
 import { Jwt } from "jsonwebtoken";
 import { userSignupSchema } from "@repo/validators"
 
@@ -6,7 +6,7 @@ const app = express();
 
 app.use(express.json());
 
-app.post("/signup", (req: Request, res: Response) => {
+app.post("/signup", ((req: Request, res: Response) => {
     const result = userSignupSchema.safeParse(req.body);
 
     if (!result.success) {
@@ -16,7 +16,7 @@ app.post("/signup", (req: Request, res: Response) => {
     // Proceed with valid data
     res.json({ message: "success" });
 
-})
+})as RequestHandler);
 
 app.post("/login", (req:Request, res:Response) => {
 
