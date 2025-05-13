@@ -1,4 +1,8 @@
 import dotenv from 'dotenv';
 import path from 'path';
 
-export const jwtsecret = "skydraw";
+dotenv.config({
+    path: path.resolve(__dirname, '../../../.env')
+});
+
+export const jwtsecret = process.env.JWT_SECRET;

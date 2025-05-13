@@ -1,12 +1,10 @@
 import express, { Request, RequestHandler, Response } from "express";
 import jwt from "jsonwebtoken";
-import { userSignupSchema } from "@repo/validators"
+import { userSignupSchema } from "@repo/common"
 import { middleware, AuthRequest } from './middleware';
 import { jwtsecret } from "@repo/backend-common";
 const app = express();
 app.use(express.json());
-
-console.log(jwtsecret);
 
 app.post("/signup", ((req: Request, res: Response) => {
 
@@ -15,7 +13,12 @@ app.post("/signup", ((req: Request, res: Response) => {
 app.post("/login", (req: Request, res: Response) => {
     const result = userSignupSchema.safeParse(req.body);
 
-    if (result.success && jwtsecret) {
+    if(!jwtsecret){
+        res.status(500).json({"message":"Error retrieving from server"});
+        return;
+    }
+
+    if (result.success) {
         const token = jwt.sign({ "userId": "1" }, jwtsecret);
         res.status(500).json({ "token": token })
     } else {

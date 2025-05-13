@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@repo/backend-common": "workspace:*",
-    "@repo/validators": "workspace:*",
+    "@repo/common": "workspace:*",
     "@types/jsonwebtoken": "^9.0.9",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2"

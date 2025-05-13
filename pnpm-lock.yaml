@@ -23,9 +23,9 @@ importers:
       '@repo/backend-common':
         specifier: workspace:*
         version: link:../../packages/backend-common
-      '@repo/validators':
+      '@repo/common':
         specifier: workspace:*
-        version: link:../../packages/validators
+        version: link:../../packages/common
       '@types/jsonwebtoken':
         specifier: ^9.0.9
         version: 9.0.9
@@ -111,6 +111,15 @@ importers:
         specifier: ^16.5.0
         version: 16.5.0
 
+  packages/common:
+    dependencies:
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      zod:
+        specifier: ^3.24.4
+        version: 3.24.4
+
   packages/eslint-config:
     devDependencies:
       '@eslint/js':
@@ -182,15 +191,6 @@ importers:
       typescript:
         specifier: 5.8.2
         version: 5.8.2
-
-  packages/validators:
-    dependencies:
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
-      zod:
-        specifier: ^3.24.4
-        version: 3.24.4
 
 packages:
 
