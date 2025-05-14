@@ -1,16 +1,6 @@
 {
     "extends": "@repo/typescript-config/base.json",
     "compilerOptions": {
-        "strict": true,
-        "esModuleInterop": true,
-        "skipLibCheck": true, // Skip checking types in declaration files
-        "moduleResolution": "Node",
-        "module": "CommonJS",
-        "target": "ES2022",
-        "lib": [
-            "ES2022",
-            "DOM"
-        ],
         "rootDir": "./src",
         "outDir": "./dist",
     }

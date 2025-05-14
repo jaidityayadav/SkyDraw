@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import {jwtsecret} from '@repo/backend-common'
+import { jwtsecret } from '@repo/backend-common/config'
 
 export interface AuthRequest extends Request {
     user?: { userId: string };
@@ -19,7 +19,7 @@ export function middleware(req: AuthRequest, res: Response, next: NextFunction) 
     }
 
     try {
-        const decoded = jwt.verify(token, jwtsecret) as {userId: string};
+        const decoded = jwt.verify(token, jwtsecret) as { userId: string };
         req.user = { userId: decoded.userId };
         next();
     } catch (err) {
