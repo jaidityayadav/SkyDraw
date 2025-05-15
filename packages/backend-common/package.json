@@ -4,7 +4,6 @@
   "exports":{
     "./config": "./dist/config.js"
   },
-  "module": "commonJS",
   "scripts": {
     "build": "tsc -b",
     "test": "echo \"Error: no test specified\" && exit 1"

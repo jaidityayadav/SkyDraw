@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import { jwtsecret } from '@repo/backend-common/config'
 
 export interface AuthRequest extends Request {
-    user?: { userId: string };
+    userId?: String;
 }
 
 export function middleware(req: AuthRequest, res: Response, next: NextFunction) {
@@ -20,7 +20,7 @@ export function middleware(req: AuthRequest, res: Response, next: NextFunction) 
 
     try {
         const decoded = jwt.verify(token, jwtsecret) as { userId: string };
-        req.user = { userId: decoded.userId };
+        req.userId = decoded.userId;
         next();
     } catch (err) {
         res.status(401).send("Invalid token");

@@ -2,7 +2,8 @@
   "name": "@repo/common",
   "version": "1.0.0",
   "exports": {
-    "./types": "./src/types.ts"
+    "./types": "./src/types.ts",
+    "./env": "./dist/config.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,6 +13,7 @@
   "description": "",
   "dependencies": {
     "@repo/typescript-config": "workspace:*",
+    "dotenv": "^16.5.0",
     "zod": "^3.24.4"
   }
 }
