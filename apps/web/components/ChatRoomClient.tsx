@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -7,15 +8,15 @@ export function ChatRoomClient({
     messages,
     id
 }: {
-    messages: { message: string }[],
-    id: Number
+    messages: {message: string}[];
+    id: number
 }) {
     const [chats, setChats] = useState(messages);
     const [currentMessage, setCurrentMessage] = useState("");
-    const { socket, loading } = useSocket();
+    const {socket, loading} = useSocket();
 
     useEffect(() => {
-        if (socket && loading) {
+        if (socket && !loading) {
 
             socket.send(JSON.stringify({
                 type: "join_room",
@@ -25,7 +26,7 @@ export function ChatRoomClient({
             socket.onmessage = (event) => {
                 const parsedData = JSON.parse(event.data);
                 if (parsedData.type === "chat") {
-                    setChats(c => [...c, parsedData.message])
+                    setChats(c => [...c, {message: parsedData.message}])
                 }
             }
         }
@@ -34,7 +35,7 @@ export function ChatRoomClient({
     return <div>
         {chats.map(m => <div>{m.message}</div>)}
 
-        <input type="text" value={currentMessage} onChange={(e) => {
+        <input type="text" value={currentMessage} onChange={e => {
             setCurrentMessage(e.target.value);
         }}></input>
         <button onClick={() => {
@@ -45,8 +46,6 @@ export function ChatRoomClient({
             }))
 
             setCurrentMessage("");
-        }}></button>
-
-        <input></input>
+        }}>Send message</button>
     </div>
 }

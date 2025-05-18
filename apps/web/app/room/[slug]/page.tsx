@@ -1,6 +1,7 @@
 import axios from "axios";
 import { ChatRoom } from "../../../components/ChatRoom";
 
+
 interface PageProps {
     params: Promise<{
         slug: string;
@@ -8,7 +9,8 @@ interface PageProps {
 }
 
 async function getRoomId(slug: string) {
-    const backendURL =process.env.NEXT_PUBLIC_BACKEND_URL;
+
+    const backendURL = process.env.BACKEND_URL
 
     if (!backendURL) {
         throw new Error("backendURL is not defined");
@@ -16,7 +18,7 @@ async function getRoomId(slug: string) {
 
     const response = await axios.get(`${backendURL}/room/${slug}`);
 
-    return response.data.roomId;
+    return Number(response.data.roomId);
 }
 
 export default async function Room(props: PageProps) {
@@ -28,7 +30,7 @@ export default async function Room(props: PageProps) {
     return (
         <div className="flex justify-center items-center min-h-screen text-white bg-black">
             <div>
-                <ChatRoom id={roomId}/>
+                <ChatRoom id={roomId} />
             </div>
         </div>
     );
